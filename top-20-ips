@@ -1,0 +1,3 @@
+# to extract the top 20 IP addresses with the highest bytes from file.txt and excluding the private subnet and NAT IPs
+sort -k10nr file.txt | awk '{if (($5 !~ /^192\.168\./)) print $5, $10}' | head -n 20
+# The regex included with the awk command excludes the entire 192.168.0.0/16 CIDR range, tested and worked
